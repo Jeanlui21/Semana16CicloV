@@ -1,0 +1,141 @@
+<div class="container-fluid pt-5 mx-0 px-0">
+
+
+    <!-- Presentacion -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-primary">Detalles del curso: <div class="my-0 text-dark">{{ courseName }}</div> </h1>
+                </div>
+    <!-- Fin Presentacion -->
+    <!-- Inicio contenido-->
+    <div class="row">
+
+                <!-- Lado Izquierdo -->
+                <div class="col-lg-7 mb-4">
+
+                  <!--  Card  -->
+                  <div class="card shadow mb-4">
+
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Notas de Alumnos</h6>
+                    </div>
+
+                    <div class="card-body">
+
+
+                            <canvas mdbChart
+                                [chartType]="chartType"
+                                [datasets]="chartDatasets"
+                                [labels]="chartLabels"
+                                [colors]="chartColors"
+                                [options]="chartOptions"
+                                [legend]="true">
+                            </canvas>
+
+
+                    </div>
+
+                  </div>
+
+                  <!--  Segunda mitad -->
+                  <div class="col-md-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 text-center">
+                          <h6 class="m-0 font-weight-bold text-primary text-center">Promedio general</h6>
+                        </div>
+                        <div class="card-body text-center">
+                          <h1>{{ promedio }}</h1>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <div class="card shadow mb-4">
+                          <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary text-center">Contribución</h6>
+                          </div>
+                          <div class="card-body text-center">
+                            <h6> Contribución del estudiante al promedio final</h6>
+                            <h1>{{ puntaje }}</h1>
+                            <div style="display: block">
+                                <canvas mdbChart
+                                    [chartType]="chartTypePIE"
+                                    [datasets]="chartDatasetsPIE"
+                                    [labels]="chartLabelsPIE"
+                                    [colors]="chartColorsPIE"
+                                    [options]="chartOptionsPIE"
+                                    [legend]="true">
+                                </canvas>
+                          </div>
+                         </div>
+                      </div>
+                    </div>
+
+                </div>
+
+                <!-- Lado Izquierdo-->
+                <div class="col-lg-5 mb-4">
+
+                  <!-- Illustrations -->
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Lista de Alumnos</h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group" *ngFor="let alumnos of month">
+                            <li class="list-group-item">{{ alumnos }}</li>
+                          </ul>
+                    </div>
+                  </div>
+
+                  <!-- Approach -->
+                  <div class="row">
+
+                      <div class="col-lg-6 mb-4">
+                        <div class="card bg-danger text-white shadow">
+                            <div class="card-body">
+                                <div class="row px-3"><h6>Desaprobados</h6></div>
+                                <table  class="col-md-12">
+                                    <tr>
+                                    <th>Nombre</th>
+                                    <th>Nota</th>
+                                    </tr>
+                                    <tr *ngFor="let mal of desaprobados ">
+                                    <th>{{ mal.nombre }}</th>
+                                    <th>{{ mal.nota }}</th>
+                                    </tr>
+                                </table>
+                              </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 mb-4">
+                        <div class="card bg-success text-white shadow">
+                            <div class="card-body">
+                                <div class="row px-3"><h6>Aprobados</h6></div>
+                                <table class="col-md-12">
+                                    <tr>
+                                    <th>Nombre</th>
+                                    <th>Nota</th>
+                                    </tr>
+                                    <tr *ngFor="let bien of aprobados ">
+                                    <th>{{ bien.nombre }}</th>
+                                    <th>{{ bien.nota }}</th>
+                                    </tr>
+                                </table>
+                              </div>
+                        </div>
+                      </div>
+              </div>
+
+            </div>
+            </div>
+            </div>
+
+            <!-- /.container-fluid -->
+
+
+
+
+
+
+
