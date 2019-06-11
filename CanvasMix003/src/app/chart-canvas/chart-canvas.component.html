@@ -35,7 +35,36 @@
                   <div class="card shadow mb-4">
 
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary">Notas de Alumnos</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">Notas de Alumnos
+                        <a (click)="basicModal.show()"><i class="fas fa-ellipsis-h pl-2"></i></a></h6>
+                    </div>
+
+                    <div mdbModal #basicModal="mdbModal"
+                    class="modal fade right"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="myBasicModalLabel"
+                    aria-hidden="true"
+                    [config]="{backdrop: false, ignoreBackdropClick: false}">
+
+                      <div class="modal-dialog modal-side modal-bottom-right " role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title w-100" id="myModalLabel">Alumnos:</h4>
+                          </div>
+                          <div class="modal-body">
+                              <ul class="list-group" *ngFor="let alumnos of todos">
+                                  <li class="list-group-item my-0 py-0 border border-0">{{ alumnos.nombre }}<span class="badge badge-primary badge-pill ml-3">{{ alumnos.nota }}</span> </li>
+                                </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" mdbBtn color="info" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cerrar</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                     <div class="card-body">
@@ -54,59 +83,6 @@
                     </div>
 
                   </div>
-
-                  <!--  Segunda mitad -->
-                  <div class="col-md-12">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 text-center">
-                          <h6 class="m-0 font-weight-bold text-primary text-center">Promedio general</h6>
-                        </div>
-                        <div class="card-body text-center">
-                          <h1>{{ promedio }}</h1>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12">
-                      <div class="card shadow mb-4">
-                          <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Contribución</h6>
-                          </div>
-                          <div class="card-body text-center">
-                            <h6> Contribución del estudiante al promedio final</h6>
-                            <h1>{{ puntaje }}</h1>
-                            <div style="display: block">
-                                <canvas mdbChart
-                                    [chartType]="chartTypePIE"
-                                    [datasets]="chartDatasetsPIE"
-                                    [labels]="chartLabelsPIE"
-                                    [colors]="chartColorsPIE"
-                                    [options]="chartOptionsPIE"
-                                    [legend]="true">
-                                </canvas>
-                          </div>
-                         </div>
-                      </div>
-                    </div>
-
-                </div>
-
-                <!-- Lado Izquierdo-->
-                <div class="col-lg-5 mb-4">
-
-                  <!-- Illustrations -->
-                  <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary">Lista de Alumnos</h6>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group" *ngFor="let alumnos of month">
-                            <li class="list-group-item">{{ alumnos }}</li>
-                          </ul>
-                    </div>
-                  </div>
-
-                  <!-- Approach -->
                   <div class="row">
 
                       <div class="col-lg-6 mb-4">
@@ -146,7 +122,46 @@
                       </div>
               </div>
 
+                </div>
+
+                <!-- Lado Izquierdo-->
+                <div class="col-lg-5 mb-4">
+                    <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 text-center">
+                              <h6 class="m-0 font-weight-bold text-primary text-center">Promedio general</h6>
+                            </div>
+                            <div class="card-body text-center">
+                              <h1>{{ promedio }}</h1>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                          <div class="card shadow mb-4">
+                              <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary text-center">Contribución</h6>
+                              </div>
+                              <div class="card-body text-center">
+                                <h6> Porcentaje de contribución del estudiante al promedio final</h6>
+                                <div style="display: block">
+                                    <canvas mdbChart
+                                        [chartType]="chartTypePIE"
+                                        [datasets]="chartDatasetsPIE"
+                                        [labels]="chartLabelsPIE"
+                                        [colors]="chartColorsPIE"
+                                        [options]="chartOptionsPIE"
+                                        [legend]="true">
+                                    </canvas>
+                              </div>
+                             </div>
+                          </div>
+                        </div>
+
+
             </div>
+
+
             </div>
             </div>
 

@@ -27,9 +27,9 @@ export class ChartCanvasComponent implements OnInit {
   monthPIE = [];
   pricePIE = [];
 
-  chart = [];
   aprobados = [];
   desaprobados = [];
+  todos = [];
 
 
 
@@ -65,19 +65,23 @@ chartColorsPIE: any;
 
       try {
       res.forEach(y => {
-
-        this.month.push(y.user.name);
         const nombre: any = y.user.name;
         const numero: any = y.grades.current_score;
         const multi: any = Math.round(numero * 0.2);
-        this.price.push(multi);
 
-        this.promedio =  ((this.price.reduce( function (a, b) { return a + b; })) / this.price.length);
+        this.price.push(multi);
+        this.month.push(y.user.name);
+
+        this.promedio =  ( (this.price.reduce( function (a, b) { return a + b; })) / this.price.length);
         this.puntaje =  (this.price.reduce( function (a, b) { return a + b; }));
 
+        const porcentaje: any = Math.round(((multi * 10) / this.promedio));
 
-        this.pricePIE.push(multi);
         this.monthPIE.push(y.user.name);
+        this.pricePIE.push(porcentaje);
+
+
+        this.todos.push({ 'nombre': nombre, 'nota': multi});
 
         if (multi > 12) {
           this.aprobados.push({ 'nombre': nombre, 'nota': multi});
@@ -122,7 +126,7 @@ chartColorsPIE: any;
             '#e64a19'
           ],
           borderColor: [
-            ''
+
           ],
           borderWidth: 2,
         }
